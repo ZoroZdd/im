@@ -68,11 +68,11 @@ Route::prefix('api')->group(function () {
     // 用户登录
     Route::post('/user/login', 'API\\User\\UserController@login');
     // 获取会话列表
-    Route::get('/im/getconvlist', 'API\\IM\\ImController@getConvList');
+    Route::get('/im/getconvlist', 'API\\IM\\IMController@getConvList');
     // 获取聊天记录
-    Route::get('/im/getChatMsgs', 'API\\IM\\ImController@getChatMsgs');
+    Route::get('/im/getChatMsgs', 'API\\IM\\IMController@getChatMsgs');
     // 创建会话
-    Route::get('/im/createconv', 'API\\IM\\ImController@createConv');
+    Route::get('/im/createconv', 'API\\IM\\IMController@createConv');
 
     // 获取成员
     Route::get('/im/members', 'API\\User\\UserController@getUserListByConvid');

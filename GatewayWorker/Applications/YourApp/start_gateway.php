@@ -27,7 +27,7 @@ $gateway->name = 'IM';
 // gateway进程数
 $gateway->count = 4;
 // 本机ip，分布式部署时使用内网ip
-$gateway->lanIp = getHostByName(getHostName());
+$gateway->lanIp = '192.168.101.46';//getHostByName(getHostName());
 // 内部通讯起始端口，假如$gateway->count=4，起始端口为4000
 // 则一般会使用4000 4001 4002 4003 4个端口作为内部通讯端口 
 $gateway->startPort = 4000;
@@ -39,6 +39,7 @@ $gateway->pingInterval = 10;
 // 心跳数据
 $gateway->pingData = '{"type":"ping"}';
 
+var_dump(getHostByName(getHostName()));
 /* 
 // 当客户端连接上来时，设置连接的onWebSocketConnect，即在websocket握手时的回调
 $gateway->onConnect = function($connection)

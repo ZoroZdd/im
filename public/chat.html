@@ -107,7 +107,7 @@
             var conv_info_global = new Object()
             conv_info_global.conv_id = null
 
-            $(document).ready(function(){ 
+            $(document).ready(function(){
                 // 调用方法
                 //alert(GetQueryString("loginId"));
 
@@ -119,9 +119,9 @@
                     console.log("用户id不正确");
                     return;
                 }
- 
 
-                
+
+
                 // t = setInterval("showAuto()", 1000);
 
 
@@ -175,10 +175,9 @@
                 // 获取会话列表
                 var chatList = requestData("http://127.0.0.1/api/im/getconvlist?client_id="+loginData.data.id,null,'GET');
                 var chatList = JSON.parse( chatList );
-
                 console.log("ChatList");
                 console.log(chatList);
-                if( chatList.code == 0 ){ 
+                if( chatList.code == 0 ){
                     var charList = chatList.data.data 
                     $.each(charList, function(key, val) {  
                         if( val.conv_type == 1 ){ //私聊
@@ -190,10 +189,12 @@
                         // var _conv_name = eval("val.conv_extend.conv_name."+User.nickname)
                         // var _conv_name = "val.conv_extend.conv_name."+User.nickname;
                         // eval(_conv_name
+                        console.log("~~~~~~~~~~~1~~~~~~~~~")
                         var conv_name = JSON.parse( JSON.stringify(val.conv_extend.conv_name)) // 先转字符串再抓数组
                         var conv_avatar = JSON.parse( JSON.stringify(val.conv_extend.conv_avatar)) // 先转字符串再抓数组
-
-                        $("#contacts_box").append("<div class='contact' data-conv_id='"+val.conv_id+"' onclick=javascript:showLab('"+val.conv_id+"','"+conv_name[User.nickname]+"')><img src='"+conv_avatar[User.nickname]+"'/>"+conv_name[User.nickname]+"</div>"); 
+                        console.log(conv_name)
+                        console.log("~~~~~~~~~~~2~~~~~~~~~")
+                        $("#contacts_box").append("<div class='contact' data-conv_id='"+val.conv_id+"' onclick=javascript:showLab('"+val.conv_id+"','"+conv_name[User.nickname]+"')><img src='"+conv_avatar[User.nickname]+"'/>"+conv_name[User.nickname]+"</div>");
 
                         // 获取会话成员
                         var memberList = requestData("http://127.0.0.1/api/im/members?conv_id="+val.conv_id,null,'GET');
@@ -216,8 +217,8 @@
                                 }
                             })
                         }
-                        console.log("~~~~~~~~~~~~~~~~~~~~")
-                        console.log(userArr)
+                        console.log("~~~~~~~~~~~~~~~~~~~~");
+                        console.log(userArr);
 
 
 

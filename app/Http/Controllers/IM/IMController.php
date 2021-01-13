@@ -9,7 +9,7 @@ use Illuminate\Contracts\Support\Jsonable;
 use App\Http\Controllers\JWTController;
 
 use App\Http\Controllers\IM\UserBaseController as UserBase;
-use App\Http\Controllers\IM\ImBaseController as ImBase;
+use App\Http\Controllers\IM\IMBaseController as ImBase;
 
 
 use GatewayWorker\Lib\Gateway;
