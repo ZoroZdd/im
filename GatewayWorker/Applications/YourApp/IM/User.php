@@ -123,6 +123,7 @@ class User{
         if( $chatinfo['data']['total'] >= 1 ){
             foreach ($chatinfo['data']['data'] as $val){
                 Gateway::joinGroup($socket_client_id,$val['conv_id']);
+                Gateway::sendToClient($socket_client_id,json_encode(array('aaaaa'=>$val['conv_id'])));
                 $temp_msg = array(
                     "count"=>Gateway::getClientCountByGroup($val['conv_id']),
                     "client_ids"=>Gateway::getUidListByGroup($val['conv_id'])
