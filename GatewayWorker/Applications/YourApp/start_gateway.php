@@ -32,7 +32,7 @@ $gateway->lanIp = getHostByName(getHostName());
 // 则一般会使用4000 4001 4002 4003 4个端口作为内部通讯端口 
 $gateway->startPort = 4000;
 // 服务注册地址
-$gateway->registerAddress = '127.0.0.1:1238';
+$gateway->registerAddress = '0.0.0.0:1238';
 
 // 心跳间隔
 $gateway->pingInterval = 10;

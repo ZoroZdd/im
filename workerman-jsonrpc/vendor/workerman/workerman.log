@@ -1521,3 +1521,4 @@ Stack trace:
 2020-08-27 07:24:23 pid:32584 Worker[32584] process terminated
 2020-08-27 07:24:23 pid:32547 worker[JsonRpc:32584] exit with status 64000
 2020-08-27 07:24:23 pid:32585 Worker[32585] process terminated
+2020-12-26 07:56:01 pid:8500 Workerman[start.php] start in DEBUG mode

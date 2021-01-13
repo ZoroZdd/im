@@ -10001,3 +10001,10 @@ Stack trace:
 2020-12-26 06:46:59 pid:7516 Workerman[start.php] start in DEBUG mode
 2020-12-26 06:47:02 pid:7516 Workerman[start.php] stopping ...
 2020-12-26 06:47:02 pid:7516 Workerman[start.php] has been stopped
+2020-12-26 07:56:41 pid:8537 Workerman[start.php] start in DEBUG mode
+2020-12-26 08:29:51 pid:8537 Workerman[start.php] stopping ...
+2020-12-26 08:29:51 pid:8537 Workerman[start.php] has been stopped
+2020-12-26 08:29:55 pid:9005 Workerman[start.php] start in DEBUG mode
+2020-12-26 09:10:09 pid:9005 Workerman[start.php] stopping ...
+2020-12-26 09:10:10 pid:9005 Workerman[start.php] has been stopped
+2020-12-26 09:10:10 pid:9508 Workerman[start.php] start in DEBUG mode
