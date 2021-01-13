@@ -89,12 +89,16 @@
                     <input type="text" name="" class='send_text'>
                     <button type="button"  class='send_btn' id='send_btn'>send</button>
                 </div>
-                <div>
+                <!-- <div>
                     <button type="button"  class='send_btn' onclick="javascript:WebSocketTest()"></button>
-                </div>
+                </div> -->
             </div>
         </div>
         <div class="sys"></div>
+        <div class="sys_1">
+            <input type="text" name="new_add" id="new_add" class='send_text'>
+            <button type="button"  class='send_btn' id='add_btn'>新增</button>
+        </div>
 
     </body>
     <script type="text/javascript">
@@ -136,7 +140,6 @@
                     console.log(loginData);
                     return;
                 }else{
-
                     //console.log(loginData)
 
                     var User = new Object()
@@ -179,7 +182,7 @@
                 console.log(chatList);
                 if( chatList.code == 0 ){
                     var charList = chatList.data.data 
-                    $.each(charList, function(key, val) {  
+                    $.each(charList, function(key, val) {
                         if( val.conv_type == 1 ){ //私聊
                             if( val.conv_extend.conv_name ){
 
@@ -199,7 +202,6 @@
                         // 获取会话成员
                         var memberList = requestData("http://127.0.0.1/api/im/members?conv_id="+val.conv_id,null,'GET');
                         var memberList = JSON.parse( memberList );
-                        console.log("~~~~~~~~~~~~~~~~~~~~")
                         if( memberList.code == 0 ){
                             $.each(memberList.data, function(key, val) {  
                                 // 获取对方用户信息api
@@ -217,18 +219,13 @@
                                 }
                             })
                         }
-                        console.log("~~~~~~~~~~~~~~~~~~~~");
-                        console.log(userArr);
-
-
-
                         // 这里临时把conv_id拿出来
-                        $(".sys").append("<div id='conv_id' style='display:hidden'>"+val.conv_id+"</div>")
+                        if( key == 0 ){
+                            $(".sys").html("<div id='conv_id' style=''>"+val.conv_id+"</div>")
+                        }
+
                     });  
                 }
-
-
-
 
                 // 拼装socket信息
                 var login_Data = new Object()
@@ -327,6 +324,18 @@
                         }
                     }
                 })
+                // 新增用户
+                $("#add_btn").click( function(){
+                    var new_usernickname = $("#new_add").val()
+
+                    alert(User.nickname)
+                    var add_res = requestData("http://127.0.0.1/api/im/createconv?nickname="+User.nickname+"&to_nickname="+new_usernickname,[],'POST');
+                    var add_res = JSON.parse( add_res );
+                    console.log("111111111111111add_res")
+                    console.log(add_res)
+                    console.log("111111111111111add_res")
+                    alert(new_user_id)
+                })
             })
 
 
@@ -382,6 +391,7 @@
                 conv_info_global.conv_id = conv_id
                 conv_info_global.conv_name = conv_name
 
+                $(".sys").html("<div id='conv_id' style=''>"+conv_id+"</div>")
                 getMsgList(conv_id,conv_name,1) 
             }
 
@@ -407,11 +417,9 @@
 
 
 
-
-
-
-
             /***  tool function 🔽 ***/
+
+
 
 
             // 获取get参数

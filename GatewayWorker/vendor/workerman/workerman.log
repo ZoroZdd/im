@@ -19086,3 +19086,9 @@ Stack trace:
 2021-01-12 16:43:33 pid:145067 Workerman[start.php] stopping ...
 2021-01-12 16:43:33 pid:145067 Workerman[start.php] has been stopped
 2021-01-12 16:43:34 pid:145359 Workerman[start.php] start in DEBUG mode
+2021-01-13 11:39:41 pid:145359 Workerman[start.php] stopping ...
+2021-01-13 11:39:41 pid:145359 Workerman[start.php] has been stopped
+2021-01-13 11:39:43 pid:237403 Workerman[start.php] start in DEBUG mode
+2021-01-13 11:40:34 pid:237403 Workerman[start.php] stopping ...
+2021-01-13 11:40:34 pid:237403 Workerman[start.php] has been stopped
+2021-01-13 11:40:37 pid:237514 Workerman[start.php] start in DEBUG mode

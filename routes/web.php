@@ -72,7 +72,7 @@ Route::prefix('api')->group(function () {
     // 获取聊天记录
     Route::get('/im/getChatMsgs', 'API\\IM\\IMController@getChatMsgs');
     // 创建会话
-    Route::get('/im/createconv', 'API\\IM\\IMController@createConv');
+    Route::post('/im/createconv', 'API\\IM\\IMController@createConv');
 
     // 获取成员
     Route::get('/im/members', 'API\\User\\UserController@getUserListByConvid');

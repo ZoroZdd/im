@@ -41,8 +41,8 @@ class IMController extends Controller
                 $conv_extend['conv_name'][$user_id] = $to_user_info->nickname;
                 $conv_extend['conv_name'][$to_user_id] = $user_info->nickname;
 
-                $conv_extend['conv_avatar'][$user_id] = "http://127.0.0.1/img/timg.jpeg";
-                $conv_extend['conv_avatar'][$to_user_id] = "http://127.0.0.1/img/img2.jpg";
+                $conv_extend['conv_avatar'][$user_id] = "/img/timg.jpeg";
+                $conv_extend['conv_avatar'][$to_user_id] = "/img/img2.jpg";
                 break;
             default:
                 $conv_extend['conv_name'] = 'unknow chat name';
