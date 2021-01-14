@@ -77,10 +77,10 @@ class IMController extends Controller
 
         //requestForIM( $type,$url,$header,$data )
         $res = requestForIM('GET',$url,$header,$data);
-
-        if( !$res ){
-            return responseError(json_encode("xxxxxxx.error"));
-        }
+        // var_dump(json_encode($res));return;
+//        if( !$res ){
+//            return responseError(json_encode("xxxxxxx.error"));
+//        }
         if( $res['code'] == 0  ){
             return responseSuccess($res['data'],true);
         }else{
