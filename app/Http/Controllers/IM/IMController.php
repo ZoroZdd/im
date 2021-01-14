@@ -292,7 +292,6 @@ class IMController extends handlerBaseController
         $update = array(
             "status"=>2,
         );
-
         return responseSuccess(ImBase::updateConv(array(["conv_id","=",$conv_id]),$update));
     }
 
