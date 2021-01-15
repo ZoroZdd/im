@@ -33,6 +33,8 @@ class UploadController extends handlerBaseController
                 $file->move($destinationPath,$fileName);
                 $filePath = asset($destinationPath.$fileName);
                 // dd("文件路径：".asset($destinationPath.$fileName));
+                //var_dump($destinationPath.$fileName);return;
+                return responseSuccess(array("img_host"=>"http:127.0.0.1","file_url"=>$destinationPath.$fileName));
                 return responseSuccess(asset($destinationPath.$fileName));
             }
         }else{

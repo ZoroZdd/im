@@ -491,7 +491,7 @@ class IMController extends handlerBaseController
         $msg['type'] = $data['type'];
         $msg['text'] = $data['text'];
         $msg['attr'] = $data['attr'];
-        $msg['url'] = $data['url'];
+        $msg['url'] = env("FILE_HOST").'/'.json_decode($data['url'],true);
         $msg['transient'] = $data['transient'];
         $msg['mention_all'] = $data['mention_all'];
         $msg['mention_client_ids'] = $data['mention_client_ids'];

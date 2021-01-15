@@ -112,7 +112,7 @@
             var conv_info_global = new Object()
             conv_info_global.conv_id = null
             // 待上传的文件
-            var upObject = new FormData();
+            var upObject = [];
 
             $(document).ready(function(){
                 // 调用方法
@@ -261,7 +261,11 @@
                             break;
                             case "msg.new" :
                                 console.log("新消息");
-                                $("#msg_box").append("<div class='msg_content'>"+ userArr['user'+res.data.from_client]['nickname']+" : " + res.data.text + "<div  style='float: right;'>  "+ format(res.data.ctime) +"</div></div>");   
+                                if( res.data.type == -2 ){
+                                    $("#msg_box").append("<div class='msg_content'>"+ userArr['user'+res.data.from_client]['nickname']+" : <img src="+res.data.url+" style='width:100px'><div  style='float: right;'>  "+ format(res.data.ctime) +"</div></div>");
+                                }else{
+                                    $("#msg_box").append("<div class='msg_content'>"+ userArr['user'+res.data.from_client]['nickname']+" : " + res.data.text + "<div  style='float: right;'>  "+ format(res.data.ctime) +"</div></div>");
+                                }
                                 var showContent = $("#msg_box");
                                 showContent[0].scrollTop = showContent[0].scrollHeight;      
                             break;
@@ -320,7 +324,7 @@
                             success : function(result) {
                                 var result = JSON.parse( result );
                                 if( result.code == 0 ){
-                                    alert('~~~~~~~~~~~~')
+                                    upObject[0] = result.data.file_url
                                 }
                             },
                             //请求失败，包含具体的错误信息
@@ -329,8 +333,6 @@
                                 console.log(e.responseText);
                             }
                         });
-
-                        alert("3")
                         // alert('3')
                         // var chat_res = requestData("http://127.0.0.1/im/file/upload",upObject,'POST',true);
                         // alert('4')
@@ -342,14 +344,22 @@
                             $("#msg_box").append("<div class='msg_content'>无效空消息</div>");
                         }
                     }
-
                     var msg_send_data = new Object()
-                    msg_send_data = {
-                        "from_client" : User.userid,
-                        "type" : -1,
-                        "text" : msg_test
+                    if( upObject[0] ){
+                        msg_send_data = {
+                            "from_client" : User.userid,
+                            "type" : -2,
+                            "text" : msg_test,
+                            "url" : upObject[0]
+                        }
+                    }else{
+                        msg_send_data = {
+                            "from_client" : User.userid,
+                            "type" : -1,
+                            "text" : msg_test
+                        }
                     }
-   
+
                     // console.log(JSON.stringify(msg_send_data))
                     var chat_res = requestData("http://127.0.0.1/im/conversations/"+$("#conv_id").html()+"/message",msg_send_data,'POST');
                     var chat_res = JSON.parse( chat_res );
@@ -384,13 +394,13 @@
                 $("#add_btn").click( function(){
                     var new_usernickname = $("#new_add").val()
 
-                    alert(User.nickname)
+                    // alert(User.nickname)
                     var add_res = requestData("http://127.0.0.1/api/im/createconv?nickname="+User.nickname+"&to_nickname="+new_usernickname,[],'POST');
                     var add_res = JSON.parse( add_res );
                     console.log("111111111111111add_res")
                     console.log(add_res)
                     console.log("111111111111111add_res")
-                    alert(new_user_id)
+                    // alert(new_user_id)
                 })
             })
 
@@ -443,11 +453,11 @@
                 var files = obj.files ;
                 var formData = new FormData();
                 for(var i = 0;i<files.length;i++){
-                    alert(files[i])
+                    //alert(files[i])
                     formData.append("file", files[i]);
                 }
                 upObject = formData
-                alert(formData)
+                //alert(formData)
                 // $.ajax({
                 //     url: "1.php",
                 //     type: "POST",

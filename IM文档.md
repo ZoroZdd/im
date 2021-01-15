@@ -400,7 +400,10 @@ curl --location --request POST 'http://127.0.0.1/im/file/upload' \
 {
     "code": 0,
     "message": "ok",
-    "data": "http://127.0.0.1/storage/uploads/7de523065e29c5526b7f1f8b15030df3.jpg",
+    "data": {
+        "img_host": "http:127.0.0.1",
+        "file_url": "storage/uploads/627c464a825a32bb888dafdb1f58e9bb.jpg"
+    },
     "request-id": null
 }
 ```
