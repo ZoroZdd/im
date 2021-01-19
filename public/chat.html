@@ -262,7 +262,7 @@
                             case "msg.new" :
                                 console.log("新消息");
                                 if( res.data.type == -2 ){
-                                    $("#msg_box").append("<div class='msg_content'>"+ userArr['user'+res.data.from_client]['nickname']+" : <img src="+res.data.url+" style='width:100px'><div  style='float: right;'>  "+ format(res.data.ctime) +"</div></div>");
+                                    $("#msg_box").append("<div class='msg_content' style='height'>"+ userArr['user'+res.data.from_client]['nickname']+" : <img src="+res.data.url+" style='width:100px'><div  style='float: right;'>  "+ format(res.data.ctime) +"</div></div>");
                                 }else{
                                     $("#msg_box").append("<div class='msg_content'>"+ userArr['user'+res.data.from_client]['nickname']+" : " + res.data.text + "<div  style='float: right;'>  "+ format(res.data.ctime) +"</div></div>");
                                 }
@@ -501,10 +501,6 @@
 
 
             /***  tool function 🔽 ***/
-
-
-
-
             // 获取get参数
             function GetQueryString(name)
             {
