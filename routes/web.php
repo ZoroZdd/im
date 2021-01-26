@@ -26,8 +26,9 @@ Route::middleware(['test'])->group(function () {
     Route::any('/test', 'testController@index')->name('test1');
 });
 
-
-// IM
+/**
+ *  IM API接口
+ */
 Route::prefix('im')->middleware(['ImAuth'])->group(function () {
     // 用户测试
     Route::get('/user/test', 'IM\\UserController@test');
@@ -58,8 +59,9 @@ Route::prefix('im')->middleware(['ImAuth'])->group(function () {
     Route::post('/file/upload', 'IM\\UploadController@uploadImage')->name('uploadImage');
 });
 
-
-// api
+/**
+ *  商户测试用接口
+ */
 Route::prefix('api')->group(function () {
     // 用户信息获取
     Route::get('/user/userInfo', 'API\\User\\UserController@userInfo');
@@ -76,8 +78,14 @@ Route::prefix('api')->group(function () {
 
     // 获取成员
     Route::get('/im/members', 'API\\User\\UserController@getUserListByConvid');
+});
 
-
+/**
+ * 后台路由
+ */
+Route::prefix('admin')->group(function () {
+    // 用户信息获取
+    Route::get('/login', 'Admin\\LoginController@login');
 });
 
 

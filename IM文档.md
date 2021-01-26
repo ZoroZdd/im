@@ -1,5 +1,3 @@
-
-
 [TOC]
 
 # IM文档
@@ -52,9 +50,6 @@ curl -X POST \
 
 ### 查询用户
 > GET 请求 https://API_BASE_URL/im/conversations/{conv_id}/members
-
-请求参数 | 约束 |参数说明
----|---|---|
 
 > 请求示例  
 ```
@@ -383,7 +378,7 @@ curl --location --request GET 'http://127.0.0.1/im/conversations/cd7fc5304f56f52
 ## FILE
 
 
-### 上传文件
+### 文件上传
 > POST 请求 https://API_BASE_URL/im/file/upload
 
 请求参数 | 约束 |参数说明
