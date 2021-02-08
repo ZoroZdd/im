@@ -12,6 +12,7 @@ class LoginController extends Controller
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function login(){
+        // var_dump(public_path());die;
         return view('admin.login');
     }
 

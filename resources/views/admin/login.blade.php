@@ -1,33 +1,32 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
     <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>AdminLTE 3 | Log in</title>
-    <!-- Tell the browser to be responsive to screen width -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!-- Font Awesome -->
-    <link rel="stylesheet" href="../../admin/AdminLTE/plugins/fontawesome-free/css/all.min.css">
-    <!-- Ionicons -->
-    <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
-    <!-- icheck bootstrap -->
-    <link rel="stylesheet" href="../../admin/AdminLTE/plugins/icheck-bootstrap/icheck-bootstrap.min.css">
-    <!-- Theme style -->
-    <link rel="stylesheet" href="../../admin/AdminLTE/dist/css/adminlte.min.css">
+    <title>LOGIN</title>
+
     <!-- Google Font: Source Sans Pro -->
-    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="../admin/AdminLTE/plugins/fontawesome-free/css/all.min.css">
+    <!-- icheck bootstrap -->
+    <link rel="stylesheet" href="http://127.0.0.1/admin/AdminLTE/plugins/icheck-bootstrap/icheck-bootstrap.min.css">
+    <!-- Theme style -->
+    <link rel="stylesheet" href="http://127.0.0.1/admin/AdminLTE/dist/css/adminlte.min.css">
 </head>
 <body class="hold-transition login-page">
 <div class="login-box">
     <div class="login-logo">
-        <a href="../../admin/AdminLTE/../../admin/AdminLTE/index2.html">管理系统</a>
+        <a href="../../index2.html">LOGIN</a>
     </div>
+    <!-- /.login-logo -->
     <div class="card">
         <div class="card-body login-card-body">
-            <p class="login-box-msg">用户登录</p>
-            <form action="./Login" method="post">
+            <p class="login-box-msg">Sign in to start your session</p>
+
+            <form action="../../index3.html" method="post">
                 <div class="input-group mb-3">
-                    <input type="text" class="form-control" name="loginName" placeholder="name" id="loginName">
+                    <input type="email" class="form-control" placeholder="Email" id="loginName">
                     <div class="input-group-append">
                         <div class="input-group-text">
                             <span class="fas fa-envelope"></span>
@@ -35,48 +34,71 @@
                     </div>
                 </div>
                 <div class="input-group mb-3">
-                    <input type="password"  name="loginPwd" class="form-control" placeholder="Password" id="Password">
+                    <input type="password" class="form-control" placeholder="Password" id="Password">
                     <div class="input-group-append">
                         <div class="input-group-text">
                             <span class="fas fa-lock"></span>
                         </div>
                     </div>
                 </div>
-
                 <div class="row">
                     <div class="col-8">
-                        <div class="input-group mb-3">
-                            <input type="text" class="form-control" name="validCode" placeholder="验证码">
-                            <div class="input-group-append">
-                                <div class="input-group-text">
-                                    <span class="fas fa-envelope"></span>
-                                </div>
-                            </div>
+                        <div class="icheck-primary">
+                            <input type="checkbox" id="remember">
+                            <label for="remember">
+                                Remember Me
+                            </label>
                         </div>
                     </div>
+                    <!-- /.col -->
                     <div class="col-4">
-                        <img id="captchImg" src="../../admin/AdminLTE/captche" onclick="refresh();">
+                        <button type="button" class="btn btn-primary btn-block" id="login_btn" data-toggle="modal" data-target="#myModal">Sign In</button>
                     </div>
-                </div>
-                <div class="row">
-                    <div class="col-4">
-                        <button type="button" class="btn btn-primary btn-block" id="login_btn">登录</button>
-                    </div>
+                    <!-- /.col -->
                 </div>
             </form>
-        </div>
-    </div>
-</div>
-<!-- jQuery -->
-<script src="../../admin/AdminLTE/plugins/jquery/jquery.min.js"></script>
-<!-- Bootstrap 4 -->
-<script src="../../admin/AdminLTE/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
-<!-- AdminLTE App -->
-<script src="../../admin/AdminLTE/dist/js/adminlte.min.js"></script>
 
-<script>
+            <div class="social-auth-links text-center mb-3">
+                <p>- OR -</p>
+                <a href="#" class="btn btn-block btn-primary">
+                    <i class="fab fa-facebook mr-2"></i> Sign in using Facebook
+                </a>
+                <a href="#" class="btn btn-block btn-danger">
+                    <i class="fab fa-google-plus mr-2"></i> Sign in using Google+
+                </a>
+            </div>
+            <!-- /.social-auth-links -->
+
+            <p class="mb-1">
+                <a href="forgot-password.html">I forgot my password</a>
+            </p>
+            <p class="mb-0">
+                <a href="register.html" class="text-center">Register a new membership</a>
+            </p>
+        </div>
+        <!-- /.login-card-body -->
+    </div>
+    @show
+    @yield('alert-normal')
+
+</div>
+<!-- /.login-box -->
+
+<!-- jQuery -->
+<script src="http://127.0.0.1/admin/AdminLTE/plugins/jquery/jquery.min.js"></script>
+<!-- Bootstrap 4 -->
+<script src="http://127.0.0.1/admin/AdminLTE/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+<!-- AdminLTE App -->
+<script src="http://127.0.0.1/admin/AdminLTE/dist/js/adminlte.min.js"></script>
+
+<SCRIPT>
     $(document).ready(function() {
+
+        /**
+         * 登录
+         */
         $("#login_btn").click(function(){
+            return;
             var name = $("#loginName").val()
             var password = $("#Password").val()
             if( !name || !password ){
@@ -84,33 +106,33 @@
                 return;
             }
 
-
+            $.ajax({
+                headers: {
+                    "app-id": "666666"
+                },
+                //请求方式
+                type: requestType,
+                //请求的媒体类型
+                contentType: isFile ? false : "application/json;charset=UTF-8",
+                //请求地址
+                async: false,
+                url: url,
+                //数据，json字符串
+                data: isFile ? data : JSON.stringify(data),
+                //请求成功
+                success: function (result) {
+                    //console.log(result);
+                    ajaxData = result;
+                },
+                //请求失败，包含具体的错误信息
+                error: function (e) {
+                    console.log(e.status);
+                    console.log(e.responseText);
+                }
+            })
         })
 
-        $.ajax({
-            headers: {
-                "app-id": "666666"
-            },
-            //请求方式
-            type: requestType,
-            //请求的媒体类型
-            contentType: isFile ? false : "application/json;charset=UTF-8",
-            //请求地址
-            async: false,
-            url: url,
-            //数据，json字符串
-            data: isFile ? data : JSON.stringify(data),
-            //请求成功
-            success: function (result) {
-                //console.log(result);
-                ajaxData = result;
-            },
-            //请求失败，包含具体的错误信息
-            error: function (e) {
-                console.log(e.status);
-                console.log(e.responseText);
-            }
-        })
+
 
         //
         function upload(obj){
@@ -132,8 +154,7 @@
             // });
         }
     })
-
-</script>
+</SCRIPT>
 
 </body>
 </html>
