@@ -16,17 +16,19 @@
 </head>
 <body class="hold-transition login-page">
 <div class="login-box">
+
     <div class="login-logo">
         <a href="../../index2.html">LOGIN</a>
     </div>
+
     <!-- /.login-logo -->
     <div class="card">
         <div class="card-body login-card-body">
             <p class="login-box-msg">Sign in to start your session</p>
 
-            <form action="../../index3.html" method="post">
+            <form action="../../index3.html" method="post" id="form1">
                 <div class="input-group mb-3">
-                    <input type="email" class="form-control" placeholder="Email" id="loginName">
+                    <input type="email" class="form-control" placeholder="Email" id="loginName" name="loginName">
                     <div class="input-group-append">
                         <div class="input-group-text">
                             <span class="fas fa-envelope"></span>
@@ -34,7 +36,7 @@
                     </div>
                 </div>
                 <div class="input-group mb-3">
-                    <input type="password" class="form-control" placeholder="Password" id="Password">
+                    <input type="password" class="form-control" placeholder="Password" id="Password" name="Password">
                     <div class="input-group-append">
                         <div class="input-group-text">
                             <span class="fas fa-lock"></span>
@@ -52,9 +54,9 @@
                     </div>
                     <!-- /.col -->
                     <div class="col-4">
-                        <button type="button" class="btn btn-primary btn-block" id="login_btn" data-toggle="modal" data-target="#myModal">Sign In</button>
+                        <button type="button" class="btn btn-primary btn-block" id="login_btn" data-toggle="modal" >Sign In</button>
                     </div>
-                    <!-- /.col -->
+                    <!-- /.col data-target="#myModal" -->
                 </div>
             </form>
 
@@ -78,12 +80,32 @@
         </div>
         <!-- /.login-card-body -->
     </div>
-    @show
-    @yield('alert-normal')
+    {{--<x-alert message="xxxx" type="alert"/>--}}
 
 </div>
 <!-- /.login-box -->
+<!-- Button trigger modal -->
 
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                ...
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Save changes</button>
+            </div>
+        </div>
+    </div>
+</div>
 <!-- jQuery -->
 <script src="http://127.0.0.1/admin/AdminLTE/plugins/jquery/jquery.min.js"></script>
 <!-- Bootstrap 4 -->
@@ -93,32 +115,34 @@
 
 <SCRIPT>
     $(document).ready(function() {
-
         /**
          * 登录
          */
         $("#login_btn").click(function(){
-            return;
             var name = $("#loginName").val()
             var password = $("#Password").val()
+
             if( !name || !password ){
-                alert("empty")
+                //alert("name or password is empty")
+
+                $('#exampleModal').modal('show')
+                // $('#exampleModal').on('show.bs.modal', function (e) {
+                //     // do something...
+                //     alert("name or password is empty")
+                // })
                 return;
             }
-
             $.ajax({
-                headers: {
-                    "app-id": "666666"
-                },
                 //请求方式
-                type: requestType,
+                type: 'POST',
                 //请求的媒体类型
-                contentType: isFile ? false : "application/json;charset=UTF-8",
+                datatype:  'json',
                 //请求地址
                 async: false,
-                url: url,
+                url: 'http://127.0.0.1/admin/login_do',
                 //数据，json字符串
-                data: isFile ? data : JSON.stringify(data),
+                data: $('#form1').serialize(),
+                //data:'111',
                 //请求成功
                 success: function (result) {
                     //console.log(result);
@@ -131,9 +155,6 @@
                 }
             })
         })
-
-
-
         //
         function upload(obj){
             var files = obj.files ;

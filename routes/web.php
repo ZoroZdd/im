@@ -85,6 +85,7 @@ Route::prefix('api')->group(function () {
  */
 Route::prefix('admin')->group(function () {
     Route::get('/login', 'Admin\\LoginController@login');
+    Route::post('/login_do', 'Admin\\LoginController@login_do');
     // 后台主页
     Route::get('/index', 'Admin\\LoginController@index');
     // 后台主页

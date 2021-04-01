@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class LoginController extends Controller
 {
@@ -17,31 +18,20 @@ class LoginController extends Controller
     }
 
     public  function login_do(Request $request){
-        if( !$request->filled(['from_client','type']) ){
+        //var_dump($request->input('loginName'));
+        if( !$request->filled(['loginName','Password']) ){
             return responseError(resCode(4001),4001);
         }
-
-        $res = ImBase::getConvInfo(array("conv_id"=>$conv_id,"app_id"=>\Request::header('app-id')),array(),array('mtime'=>'desc'),'');
-        if( isset($res['data'][0]) ){
-            $convInfo = $res['data'][0];
-        }else{
-            return responseError(resCode(4011),4011);
+        $userName = $request->input('loginName');
+        $Password = $request->input('Password');
+        $user_info = DB::table('admin_user')->where('username', $userName)->first();
+        if( !$user_info ){
+            return responseError($userName.'不存在');
         }
-        // 消息来源
-        $client_id = $request->input('from_client');
-
-        $userInfo = UserBase::getUserBaseInfoByUniquename($client_id,\Request::header('app-id'));
-
-        if( !$userInfo ){
-            return responseError(resCode(211).$client_id,211);
+        if( $user_info->password != $Password ) {
+            return responseError('密码错误');
         }
-        // todo 用户权限校验
-
-
-        // 消息类型过滤 todo
-        if( !in_array($request->input('type'),[-1,-2,-3,-4,-5,-6]) ){
-            return responseError(resCode(4406),4406);
-        }
+        return responseSuccess();
     }
 
     /**

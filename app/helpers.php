@@ -56,7 +56,7 @@ function getMillisecond() {
  * @param $data
  * @return false|string
  */
-function responseSuccess($data, $message = "ok")//: Response
+function responseSuccess($data = null, $message = "ok")//: Response
 {
     $responseData['code'] = 0;
     $responseData['message'] = $message;
