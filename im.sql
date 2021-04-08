@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.0.2
+-- version 5.0.4
 -- https://www.phpmyadmin.net/
 --
 -- 主机： mysql:3306
--- 生成日期： 2020-12-20 04:39:20
+-- 生成日期： 2021-04-06 02:46:40
 -- 服务器版本： 8.0.13
--- PHP 版本： 7.4.6
+-- PHP 版本： 7.4.13
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -24,14 +24,33 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
+-- 表的结构 `admin_user`
+--
+
+CREATE TABLE `admin_user` (
+  `id` int(11) NOT NULL,
+  `username` varchar(16) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `password` varchar(32) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- 转存表中的数据 `admin_user`
+--
+
+INSERT INTO `admin_user` (`id`, `username`, `password`) VALUES
+(1, 'admin', '1');
+
+-- --------------------------------------------------------
+
+--
 -- 表的结构 `api_user`
 --
 
 CREATE TABLE `api_user` (
   `id` int(11) NOT NULL,
   `nickname` varchar(12) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL COMMENT '昵称',
-  `pwd` varchar(32) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT '密码',
-  `avatar` text COLLATE utf8mb4_unicode_ci NOT NULL COMMENT '头像'
+  `pwd` varchar(32) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL COMMENT '密码',
+  `avatar` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL COMMENT '头像'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
@@ -40,7 +59,11 @@ CREATE TABLE `api_user` (
 
 INSERT INTO `api_user` (`id`, `nickname`, `pwd`, `avatar`) VALUES
 (1, '1112', 'd3a646db212e078f8f5a47d231e4d967', 'https://cdfy120.cdu.edu.cn/dfiles/10172/images/qyy.jpg'),
-(2, '1113', 'd3a646db212e078f8f5a47d231e4d967', 'https://cdfy120.cdu.edu.cn/dfiles/10172/images/qyy.jpg');
+(2, '1113', 'd3a646db212e078f8f5a47d231e4d967', 'https://cdfy120.cdu.edu.cn/dfiles/10172/images/qyy.jpg'),
+(3, '147', 'd3a646db212e078f8f5a47d231e4d967', 'https://cdfy120.cdu.edu.cn/dfiles/10172/images/qyy.jpg'),
+(4, '258', 'd3a646db212e078f8f5a47d231e4d967', 'https://cdfy120.cdu.edu.cn/dfiles/10172/images/qyy.jpg'),
+(5, '369', 'd3a646db212e078f8f5a47d231e4d967', 'https://cdfy120.cdu.edu.cn/dfiles/10172/images/qyy.jpg'),
+(6, '123', 'd3a646db212e078f8f5a47d231e4d967', 'https://cdfy120.cdu.edu.cn/dfiles/10172/images/qyy.jpg');
 
 -- --------------------------------------------------------
 
@@ -50,9 +73,9 @@ INSERT INTO `api_user` (`id`, `nickname`, `pwd`, `avatar`) VALUES
 
 CREATE TABLE `conv_detail` (
   `id` int(11) NOT NULL,
-  `msg_id` varchar(32) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `msg_id` varchar(32) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `user_id` varchar(32) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL COMMENT '用户id',
-  `conv_id` varchar(32) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT '会话id',
+  `conv_id` varchar(32) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL COMMENT '会话id',
   `type` int(2) NOT NULL DEFAULT '-1' COMMENT '消息类型-1文本-2图片-3语音-4视频-5位置-6文件',
   `text` text CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL COMMENT '文本描述',
   `attr` json DEFAULT NULL COMMENT '自定义描述',
@@ -304,7 +327,140 @@ INSERT INTO `conv_detail` (`id`, `msg_id`, `user_id`, `conv_id`, `type`, `text`,
 (237, '738c752581bc36fb2122ecb2db1fe276', '15', 'cd7fc5304f56f52488d5246b0ebbdbfb', -1, '123123122222', 'null', 'null', 1608298313736, 1, 0, 0, 'null', 0, NULL),
 (238, 'ae8c6a1146432fcc88d69ad735e2d56f', '15', 'cd7fc5304f56f52488d5246b0ebbdbfb', -1, '12333333333', 'null', 'null', 1608298317004, 1, 0, 0, 'null', 0, NULL),
 (239, '84a2ab146df74c4d1306d13d000d2ff7', '15', 'cd7fc5304f56f52488d5246b0ebbdbfb', -1, '123323333211112321', 'null', 'null', 1608298323027, 1, 0, 0, 'null', 0, NULL),
-(240, '67b618f4fe3f9396e28272a752aa522f', '14', 'cd7fc5304f56f52488d5246b0ebbdbfb', -1, '00', 'null', 'null', 1608436274797, 1, 0, 0, 'null', 0, NULL);
+(240, '67b618f4fe3f9396e28272a752aa522f', '14', 'cd7fc5304f56f52488d5246b0ebbdbfb', -1, '00', 'null', 'null', 1608436274797, 1, 0, 0, 'null', 0, NULL),
+(241, '9ae2958996b0155e1e78e93993bf4af3', '16', 'f4363244a1158a0f07bcca976f66840b', -1, '1', 'null', 'null', 1610423623002, 1, 0, 0, 'null', 0, NULL),
+(242, '46c11228c238d013cc3fdaa116cdf4bb', '16', 'f4363244a1158a0f07bcca976f66840b', -1, '12', 'null', 'null', 1610423638887, 1, 0, 0, 'null', 0, NULL),
+(243, '17f7627633536b0f4476641bb31a57b4', '16', 'f4363244a1158a0f07bcca976f66840b', -1, '1', 'null', 'null', 1610423820941, 1, 0, 0, 'null', 0, NULL),
+(244, '0e706cb9d11b5b38c72f4d0d9c6220b5', '16', 'f4363244a1158a0f07bcca976f66840b', -1, '1', 'null', 'null', 1610431507608, 1, 0, 0, 'null', 0, NULL),
+(245, '0e52f97a26f3dbb2e4975ebbdf2044d2', '16', 'f4363244a1158a0f07bcca976f66840b', -1, '1', 'null', 'null', 1610431760951, 1, 0, 0, 'null', 0, NULL),
+(246, 'e88965856b31e10295beaac53dab10af', '16', 'f4363244a1158a0f07bcca976f66840b', -1, '12', 'null', 'null', 1610431973556, 1, 0, 0, 'null', 0, NULL),
+(247, '311ccfa5e968e95c4ca4da783b78dc52', '16', 'f4363244a1158a0f07bcca976f66840b', -1, '1', 'null', 'null', 1610432976476, 1, 0, 0, 'null', 0, NULL),
+(248, 'fea9c4858f100c071dd25718d8ebcabe', '16', 'f4363244a1158a0f07bcca976f66840b', -1, '1', 'null', 'null', 1610433196227, 1, 0, 0, 'null', 0, NULL),
+(249, '5992b317db502f6fdc756a14082996e5', '16', 'f4363244a1158a0f07bcca976f66840b', -1, '1', 'null', 'null', 1610433220019, 1, 0, 0, 'null', 0, NULL),
+(250, '205ac552f38da7317b7ab0edb56378a4', '16', 'f4363244a1158a0f07bcca976f66840b', -1, '1', 'null', 'null', 1610433245955, 1, 0, 0, 'null', 0, NULL),
+(251, 'bf976444d95e3caaca73020299a05e01', '16', 'f4363244a1158a0f07bcca976f66840b', -1, '1', 'null', 'null', 1610433297811, 1, 0, 0, 'null', 0, NULL),
+(252, '2f18dc97a8062f145794cf9a10058bc4', '16', 'f4363244a1158a0f07bcca976f66840b', -1, '1', 'null', 'null', 1610433299654, 1, 0, 0, 'null', 0, NULL),
+(253, '9ac2e4642ee453cb5adb2f8796ee05ef', '16', 'f4363244a1158a0f07bcca976f66840b', -1, '1', 'null', 'null', 1610433305931, 1, 0, 0, 'null', 0, NULL),
+(254, '383a609722701610b81111fab48fa52c', '16', 'f4363244a1158a0f07bcca976f66840b', -1, '1', 'null', 'null', 1610433486784, 1, 0, 0, 'null', 0, NULL),
+(255, 'ca3429c963e640e9060223ee943746fa', '16', 'f4363244a1158a0f07bcca976f66840b', -1, '1', 'null', 'null', 1610433560257, 1, 0, 0, 'null', 0, NULL),
+(256, 'dbb2e94086415a96a861605966dbb59d', '16', 'f4363244a1158a0f07bcca976f66840b', -1, '1', 'null', 'null', 1610433739929, 1, 0, 0, 'null', 0, NULL),
+(257, 'a7f0d175cde1b24836b7562f7c546863', '16', 'f4363244a1158a0f07bcca976f66840b', -1, '21', 'null', 'null', 1610433780247, 1, 0, 0, 'null', 0, NULL),
+(258, '018a9a639f7ecd499f331e3c99f966b0', '16', 'f4363244a1158a0f07bcca976f66840b', -1, '1', 'null', 'null', 1610435359812, 1, 0, 0, 'null', 0, NULL),
+(259, 'c62089a9a99ac84260368d975dd2ae13', '16', 'f4363244a1158a0f07bcca976f66840b', -1, '21', 'null', 'null', 1610435506748, 1, 0, 0, 'null', 0, NULL),
+(260, '6715b3b13d9107f46a2ddc3d2c1ce183', '16', 'f4363244a1158a0f07bcca976f66840b', -1, '21', 'null', 'null', 1610435536837, 1, 0, 0, 'null', 0, NULL),
+(261, '068d80cb6c00bad2e291b7612348d85b', '16', 'f4363244a1158a0f07bcca976f66840b', -1, '1', 'null', 'null', 1610436535891, 1, 0, 0, 'null', 0, NULL),
+(262, '3ca81b701c8143b379e7f502d1fc8b59', '16', 'f4363244a1158a0f07bcca976f66840b', -1, '1', 'null', 'null', 1610436669482, 1, 0, 0, 'null', 0, NULL),
+(263, '64ed89ecd73368fc91742f477481660e', '16', 'f4363244a1158a0f07bcca976f66840b', -1, '1', 'null', 'null', 1610436917249, 1, 0, 0, 'null', 0, NULL),
+(264, '8d2cf14478b323f015f19a94c643b5ab', '16', 'f4363244a1158a0f07bcca976f66840b', -1, '000', 'null', 'null', 1610437112201, 1, 0, 0, 'null', 0, NULL),
+(265, '93085eae15ddeb513fbd282f0da71e87', '16', 'f4363244a1158a0f07bcca976f66840b', -1, '21', 'null', 'null', 1610437132125, 1, 0, 0, 'null', 0, NULL),
+(266, '12c57f192210d690bb756dadc1ac5cde', '16', 'f4363244a1158a0f07bcca976f66840b', -1, '21', 'null', 'null', 1610437201868, 1, 0, 0, 'null', 0, NULL),
+(267, 'f512d927adfa94ec9dbcee525e0a21cc', '16', 'f4363244a1158a0f07bcca976f66840b', -1, '21', 'null', 'null', 1610437257942, 1, 0, 0, 'null', 0, NULL),
+(268, '6e3bb8ee5ba0873b0e2b3d6bf64fd9ff', '16', 'f4363244a1158a0f07bcca976f66840b', -1, '21', 'null', 'null', 1610437280045, 1, 0, 0, 'null', 0, NULL),
+(269, 'a87a876a3cad2d920abcbb0608be4bf5', '16', 'f4363244a1158a0f07bcca976f66840b', -1, '1', 'null', 'null', 1610438986091, 1, 0, 0, 'null', 0, NULL),
+(270, 'd37c28b1ed8d6e5989f952f0d77290f8', '16', 'f4363244a1158a0f07bcca976f66840b', -1, '1', 'null', 'null', 1610439164306, 1, 0, 0, 'null', 0, NULL),
+(271, 'a56d2a35912b72ed38257b4e8f0bfdae', '16', 'f4363244a1158a0f07bcca976f66840b', -1, '1', 'null', 'null', 1610439320570, 1, 0, 0, 'null', 0, NULL),
+(272, '9f3a722ae1ed13ff2a3848cf6c5bd104', '16', 'f4363244a1158a0f07bcca976f66840b', -1, '1', 'null', 'null', 1610439404647, 1, 0, 0, 'null', 0, NULL),
+(273, '0c4530786406e601e9a1bb16d1b78ddc', '16', 'f4363244a1158a0f07bcca976f66840b', -1, '121', 'null', 'null', 1610439416668, 1, 0, 0, 'null', 0, NULL),
+(274, '7d8f28cbe3d88a38ad04bab7c96174c0', '16', 'f4363244a1158a0f07bcca976f66840b', -1, '21', 'null', 'null', 1610439527941, 1, 0, 0, 'null', 0, NULL),
+(275, '816aef66ba92ab534b057a21f7f895ac', '16', 'f4363244a1158a0f07bcca976f66840b', -1, '21', 'null', 'null', 1610439634140, 1, 0, 0, 'null', 0, NULL),
+(276, '3182b98bd40caddad2221365f69e1ec6', '16', 'f4363244a1158a0f07bcca976f66840b', -1, '21', 'null', 'null', 1610439684741, 1, 0, 0, 'null', 0, NULL),
+(277, 'b4b2e4f39d9fd0a16a8ff8e228b4d8dc', '16', 'f4363244a1158a0f07bcca976f66840b', -1, '21', 'null', 'null', 1610439759459, 1, 0, 0, 'null', 0, NULL),
+(278, '47264e833eab43f924cacd8295209c17', '16', 'f4363244a1158a0f07bcca976f66840b', -1, '21', 'null', 'null', 1610440161304, 1, 0, 0, 'null', 0, NULL),
+(279, '95c5e14e81070db39e1044102bd638f8', '16', 'f4363244a1158a0f07bcca976f66840b', -1, '\\', 'null', 'null', 1610440191311, 1, 0, 0, 'null', 0, NULL),
+(280, '8065844b0df3083764234ea937bce9f5', '16', 'f4363244a1158a0f07bcca976f66840b', -1, '21', 'null', 'null', 1610440340422, 1, 0, 0, 'null', 0, NULL),
+(281, '61c071fcb1c98d65366ea3e0e6513f4f', '16', 'f4363244a1158a0f07bcca976f66840b', -1, '21', 'null', 'null', 1610440388438, 1, 0, 0, 'null', 0, NULL),
+(282, 'd69d6c01fa5feee72c9865c2e7ca6b1c', '16', 'f4363244a1158a0f07bcca976f66840b', -1, '2121', 'null', 'null', 1610440405791, 1, 0, 0, 'null', 0, NULL),
+(283, 'e1c5767f26015f904445a194a90ee495', '16', 'f4363244a1158a0f07bcca976f66840b', -1, '21', 'null', 'null', 1610440418643, 1, 0, 0, 'null', 0, NULL),
+(284, '729a78392f32bb8b90e96d8534ebd814', '16', 'f4363244a1158a0f07bcca976f66840b', -1, '21', 'null', 'null', 1610440827784, 1, 0, 0, 'null', 0, NULL),
+(285, 'fb76dc90bad4534838ffbd324f81e2e7', '16', 'f4363244a1158a0f07bcca976f66840b', -1, '21', 'null', 'null', 1610440858305, 1, 0, 0, 'null', 0, NULL),
+(286, '1c4c0383e3209d476a3d86bc86991bfb', '16', 'f4363244a1158a0f07bcca976f66840b', -1, '21', 'null', 'null', 1610441101597, 1, 0, 0, 'null', 0, NULL),
+(287, '41e8bd97a97943cc4f57a0aeb5009884', '16', 'f4363244a1158a0f07bcca976f66840b', -1, '213131', 'null', 'null', 1610441107846, 1, 0, 0, 'null', 0, NULL),
+(288, '6b2f2e4be618b43b4595e7a0ee7f077d', '16', 'f4363244a1158a0f07bcca976f66840b', -1, '21213134', 'null', 'null', 1610441109760, 1, 0, 0, 'null', 0, NULL),
+(289, '073bee48c3ce21d155b1e834a9d47c16', '17', 'f4363244a1158a0f07bcca976f66840b', -1, '21', 'null', 'null', 1610441124531, 1, 0, 0, 'null', 0, NULL),
+(290, '336b04f7fc717094e6c0f9b4fbc034aa', '16', 'f4363244a1158a0f07bcca976f66840b', -1, '21', 'null', 'null', 1610498552412, 1, 0, 0, 'null', 0, NULL),
+(291, 'b671146479c7db4c4db23597a281fecf', '16', 'f4363244a1158a0f07bcca976f66840b', -1, '1', 'null', 'null', 1610499672954, 1, 0, 0, 'null', 0, NULL),
+(292, '7d69f1c5c3aa46abe962448cda6f7a8a', '16', 'f4363244a1158a0f07bcca976f66840b', -1, '1', 'null', 'null', 1610499673827, 1, 0, 0, 'null', 0, NULL),
+(293, '844c4b894867682f2d5da5829f24f393', '16', 'f4363244a1158a0f07bcca976f66840b', -1, '1', 'null', 'null', 1610499674133, 1, 0, 0, 'null', 0, NULL),
+(294, '563fad8cc304bda01da2b19b063e4796', '16', 'f4363244a1158a0f07bcca976f66840b', -1, '1', 'null', 'null', 1610499674339, 1, 0, 0, 'null', 0, NULL),
+(295, '454ad963b51196da731c288c309312df', '16', 'f4363244a1158a0f07bcca976f66840b', -1, '1', 'null', 'null', 1610499674552, 1, 0, 0, 'null', 0, NULL),
+(296, '3c657426c7dcc01cc0801a83fe11656d', '16', 'f4363244a1158a0f07bcca976f66840b', -1, '1', 'null', 'null', 1610499674735, 1, 0, 0, 'null', 0, NULL),
+(297, '694cf96db65018d8d2dd433d128b37c6', '16', 'f4363244a1158a0f07bcca976f66840b', -1, '1', 'null', 'null', 1610499674906, 1, 0, 0, 'null', 0, NULL),
+(298, 'c1bc71b3795633b4c4d266a83f6625df', '16', 'f4363244a1158a0f07bcca976f66840b', -1, '1', 'null', 'null', 1610499675149, 1, 0, 0, 'null', 0, NULL),
+(299, '2b03cfc2b5897112f6c2492230345215', '16', 'f4363244a1158a0f07bcca976f66840b', -1, '1', 'null', 'null', 1610499675313, 1, 0, 0, 'null', 0, NULL),
+(300, '9acfa57e1902348b429c7b7d3307b573', '16', 'f4363244a1158a0f07bcca976f66840b', -1, '1', 'null', 'null', 1610499675529, 1, 0, 0, 'null', 0, NULL),
+(301, '6478305cc647b0f2862047bef12ada28', '16', 'f4363244a1158a0f07bcca976f66840b', -1, '1', 'null', 'null', 1610499675753, 1, 0, 0, 'null', 0, NULL),
+(302, 'ed2b9cba96e34bb84ed84491533427e7', '16', 'f4363244a1158a0f07bcca976f66840b', -1, '1', 'null', 'null', 1610499675912, 1, 0, 0, 'null', 0, NULL),
+(303, 'b897c9e50ebcc5b9674238bfae6bf483', '16', 'f4363244a1158a0f07bcca976f66840b', -1, '1', 'null', 'null', 1610499676113, 1, 0, 0, 'null', 0, NULL),
+(304, '063553c9b92eaf9ebdb8e76a6ffd2346', '16', 'f4363244a1158a0f07bcca976f66840b', -1, '1', 'null', 'null', 1610499676340, 1, 0, 0, 'null', 0, NULL),
+(305, '799b5b67b24ea28e307249f075cf0d0f', '16', 'f4363244a1158a0f07bcca976f66840b', -1, '21', 'null', 'null', 1610508521428, 1, 0, 0, 'null', 0, NULL),
+(306, 'c766d193a9880c730818d6270d159ec3', '18', '8025f0093d3a33f3d6cf23b272e0cae8', -1, '21', 'null', 'null', 1610508540389, 1, 0, 0, 'null', 0, NULL),
+(307, 'ecdd9a0b1cef9dc229df9cd901d03423', '16', 'f4363244a1158a0f07bcca976f66840b', -1, '21', 'null', 'null', 1610508543939, 1, 0, 0, 'null', 0, NULL),
+(308, '154780cb13a583fb12c18a228a466092', '16', 'f4363244a1158a0f07bcca976f66840b', -1, '21', 'null', 'null', 1610508559342, 1, 0, 0, 'null', 0, NULL),
+(309, '900694759504a8d2faf396a7f417102d', '18', '8025f0093d3a33f3d6cf23b272e0cae8', -1, '21', 'null', 'null', 1610508562503, 1, 0, 0, 'null', 0, NULL),
+(310, '57d1fd4c9692ac48a392839d11727f16', '16', 'f4363244a1158a0f07bcca976f66840b', -1, '21', 'null', 'null', 1610508567039, 1, 0, 0, 'null', 0, NULL),
+(311, '9df156b526ac5ca7c07fa46fa5007a2c', '18', '8025f0093d3a33f3d6cf23b272e0cae8', -1, 'WQ', 'null', 'null', 1610508601007, 1, 0, 0, 'null', 0, NULL),
+(312, '247475c0585530db09f187169791ddfe', '16', 'f4363244a1158a0f07bcca976f66840b', -1, '21', 'null', 'null', 1610508605620, 1, 0, 0, 'null', 0, NULL),
+(313, '73876028702f67c59e829df00f6a6c4c', '16', 'f4363244a1158a0f07bcca976f66840b', -1, '21', 'null', 'null', 1610508621351, 1, 0, 0, 'null', 0, NULL),
+(314, '6e963139ee1b04514b03c1506c839da3', '16', 'f4363244a1158a0f07bcca976f66840b', -1, '21', 'null', 'null', 1610508666749, 1, 0, 0, 'null', 0, NULL),
+(315, 'e3d296a7978dd6ca47ef71a55262c97b', '16', 'f4363244a1158a0f07bcca976f66840b', -1, '21', 'null', 'null', 1610509250881, 1, 0, 0, 'null', 0, NULL),
+(316, 'c89ee6189bd8a1d18d6c68c2c02d222b', '16', 'f4363244a1158a0f07bcca976f66840b', -1, '21', 'null', 'null', 1610509294786, 1, 0, 0, 'null', 0, NULL),
+(317, 'e047a2b2ae9acd6b8560fb6de4f039a0', '18', '8025f0093d3a33f3d6cf23b272e0cae8', -1, 'wq', 'null', 'null', 1610509332543, 1, 0, 0, 'null', 0, NULL),
+(318, '0cf392aab5257235b723f08e786b5d91', '16', 'f4363244a1158a0f07bcca976f66840b', -1, '01', 'null', 'null', 1610509470574, 1, 0, 0, 'null', 0, NULL),
+(319, '8305ebe7d7e8eb8990de944c1e86b97b', '18', '8025f0093d3a33f3d6cf23b272e0cae8', -1, '01', 'null', 'null', 1610509501742, 1, 0, 0, 'null', 0, NULL),
+(320, '07f908f0b55cd76809d07f8edf1e0eb9', '16', 'f4363244a1158a0f07bcca976f66840b', -1, '01', 'null', 'null', 1610509517091, 1, 0, 0, 'null', 0, NULL),
+(321, '6165a2dfb47d37b798c825280a53cec8', '16', 'f4363244a1158a0f07bcca976f66840b', -1, '01', 'null', 'null', 1610509530002, 1, 0, 0, 'null', 0, NULL),
+(322, '7e75ae2f2d7c3c5181788c0710cfe02f', '16', 'f4363244a1158a0f07bcca976f66840b', -1, '01', 'null', 'null', 1610509541860, 1, 0, 0, 'null', 0, NULL),
+(323, '57871f4929aefcf6813fab4fa59d4b77', '16', 'f4363244a1158a0f07bcca976f66840b', -1, '01110', 'null', 'null', 1610509569977, 1, 0, 0, 'null', 0, NULL),
+(324, '4b7463e05f49722f0ead209c6b72ee36', '18', '8025f0093d3a33f3d6cf23b272e0cae8', -1, '01', 'null', 'null', 1610509579381, 1, 0, 0, 'null', 0, NULL),
+(325, '5a4517acf37e33d8b271776bec3fef8d', '18', '8025f0093d3a33f3d6cf23b272e0cae8', -1, '01', 'null', 'null', 1610509699929, 1, 0, 0, 'null', 0, NULL),
+(326, '3bb2edea26e31c3eb0a4f45b694f49c3', '16', 'f4363244a1158a0f07bcca976f66840b', -1, '01', 'null', 'null', 1610509713129, 1, 0, 0, 'null', 0, NULL),
+(327, 'cf520b10557a411000c1db019a4251c2', '16', 'f4363244a1158a0f07bcca976f66840b', -1, '10', 'null', 'null', 1610509730266, 1, 0, 0, 'null', 0, NULL),
+(328, '9007fa724723992d88b99ba20ec95f90', '18', '8025f0093d3a33f3d6cf23b272e0cae8', -1, '12', 'null', 'null', 1610510296540, 1, 0, 0, 'null', 0, NULL),
+(329, 'ae9667bfec157f4f71c084b40764f3c0', '16', '8025f0093d3a33f3d6cf23b272e0cae8', -1, '23', 'null', 'null', 1610510299935, 1, 0, 0, 'null', 0, NULL),
+(330, '6bc74d18f5048681a564c69a62806330', '16', 'f4363244a1158a0f07bcca976f66840b', -1, '1', 'null', 'null', 1610526500645, 1, 0, 0, 'null', 0, NULL),
+(331, 'a48b72ae6a3bb9d54e19bce3603005e2', '17', 'f4363244a1158a0f07bcca976f66840b', -1, '1', 'null', 'null', 1610526663735, 1, 0, 0, 'null', 0, NULL),
+(332, 'b1a15cd33d4419dc672b58ce48094e47', '17', 'f4363244a1158a0f07bcca976f66840b', -1, '12', 'null', 'null', 1610526740566, 1, 0, 0, 'null', 0, NULL),
+(333, '8b2ecc1290bc2ce1869b668c72dbe4e7', '16', 'f4363244a1158a0f07bcca976f66840b', -1, '21', 'null', 'null', 1610526755221, 1, 0, 0, 'null', 0, NULL),
+(334, 'b439f842ba32f823b4b9ed38d5b08deb', '16', 'f4363244a1158a0f07bcca976f66840b', -1, '21', 'null', 'null', 1610526760151, 1, 0, 0, 'null', 0, NULL),
+(335, '4a33988c5502057de5df1a604e59398a', '16', 'f4363244a1158a0f07bcca976f66840b', -1, '1', 'null', 'null', 1610526763072, 1, 0, 0, 'null', 0, NULL),
+(336, '6bb8b25b6e528a53dca7b0fb6f3a12e0', '17', 'f4363244a1158a0f07bcca976f66840b', -1, '21', 'null', 'null', 1610526767829, 1, 0, 0, 'null', 0, NULL);
+INSERT INTO `conv_detail` (`id`, `msg_id`, `user_id`, `conv_id`, `type`, `text`, `attr`, `url`, `ctime`, `msg_status`, `no_sync`, `mention_all`, `mention_client_ids`, `transient`, `mtime`) VALUES
+(337, 'adcb5ec85a1b82ec075c340ea0731ac8', '17', 'f4363244a1158a0f07bcca976f66840b', -1, '21', 'null', 'null', 1610594202464, 1, 0, 0, 'null', 0, NULL),
+(338, 'fdf3e6cadd8ebec8f4a05306caa7cfb0', '17', 'f4363244a1158a0f07bcca976f66840b', -1, '21', 'null', 'null', 1610594847456, 1, 0, 0, 'null', 0, NULL),
+(339, 'd5a8d1ff54a9c698c71936a07a1e5697', '17', 'f4363244a1158a0f07bcca976f66840b', -1, '1', 'null', 'null', 1610594985923, 1, 0, 0, 'null', 0, NULL),
+(340, '19325eabe8a355d9f2bf5865cf75299f', '17', 'f4363244a1158a0f07bcca976f66840b', -1, '*', 'null', 'null', 1610595006027, 1, 0, 0, 'null', 0, NULL),
+(341, '84d8d1fd10e2036e0aee59b0981ee014', '17', 'f4363244a1158a0f07bcca976f66840b', -1, '*', 'null', 'null', 1610613406659, 1, 0, 0, 'null', 0, NULL),
+(342, '194a7ae4eb5fbd89a8375a9dc3002bc7', '17', 'f4363244a1158a0f07bcca976f66840b', -1, '*', 'null', 'null', 1610614431036, 1, 0, 0, 'null', 0, NULL),
+(343, '9817b2c75dd8bd45aa590183960ce19d', '16', 'f4363244a1158a0f07bcca976f66840b', -1, '*', 'null', 'null', 1610615225867, 1, 0, 0, 'null', 0, NULL),
+(344, '212c616dd60f947b47255f52a36c5f5a', '16', 'f4363244a1158a0f07bcca976f66840b', -1, '*', 'null', 'null', 1610615371290, 1, 0, 0, 'null', 0, NULL),
+(345, '23fdf5442321d6b26dfd593af79c7151', '17', 'f4363244a1158a0f07bcca976f66840b', -2, '*', 'null', '\"http://127.0.0.1/storage/uploads/e4f5762069e80ecb403b5fd391a8bfc2.jpg\"', 1610673178715, 1, 0, 0, 'null', 0, NULL),
+(346, '73d4bacab7d4014e7455995d3744942b', '17', 'f4363244a1158a0f07bcca976f66840b', -2, '*', 'null', '\"http://127.0.0.1/storage/uploads/cef6255e846eeeab3c54672df5c59997.jpg\"', 1610673289778, 1, 0, 0, 'null', 0, NULL),
+(347, '34af3caaba178672653713cdc0110547', '17', 'f4363244a1158a0f07bcca976f66840b', -2, '*', 'null', '\"http://127.0.0.1/storage/uploads/becda2c57f4c8c31f614ee9e500fc4ce.jpg\"', 1610673648444, 1, 0, 0, 'null', 0, NULL),
+(348, 'f5f05decfd344fd6e871fd13c8bb2f6a', '16', 'f4363244a1158a0f07bcca976f66840b', -2, '*', 'null', '\"storage/uploads/9144f8e1db9181c6c924a550f67a3568.jpg\"', 1610674733202, 1, 0, 0, 'null', 0, NULL),
+(349, '4e2d9e005aeea316f7b7a830102a7c1d', '16', 'f4363244a1158a0f07bcca976f66840b', -2, '*', 'null', '\"storage/uploads/c52f1fa16720b43aaaa0c0e15a97a6c5.jpg\"', 1610674869019, 1, 0, 0, 'null', 0, NULL),
+(350, '39472b713863ac8a28f54531a46b909a', '16', 'f4363244a1158a0f07bcca976f66840b', -2, '*', 'null', '\"storage/uploads/0a4548557241430622d1d9d9b72f36ec.jpg\"', 1610674987823, 1, 0, 0, 'null', 0, NULL),
+(351, '81a810fb6e8c9c287aa39e617f418212', '16', 'f4363244a1158a0f07bcca976f66840b', -2, '*', 'null', '\"storage/uploads/9c1881fff12204aeca50018341d2ff87.jpg\"', 1610675099005, 1, 0, 0, 'null', 0, NULL),
+(352, '48b535a571c9d02967732c8fd5fcb49b', '16', 'f4363244a1158a0f07bcca976f66840b', -2, '*', 'null', '\"storage/uploads/a0916c7c845b511d0389424d3269def1.jpg\"', 1610675313946, 1, 0, 0, 'null', 0, NULL),
+(353, 'edbfe5d4f4306223e8f32772441d96f1', '16', 'f4363244a1158a0f07bcca976f66840b', -2, '*', 'null', '\"storage/uploads/3fac4af0c68ffc73461429072cbe4269.jpg\"', 1610675432506, 1, 0, 0, 'null', 0, NULL),
+(354, '184dc024449e21df21b44e252c3fb339', '16', 'f4363244a1158a0f07bcca976f66840b', -2, '*', 'null', '\"storage/uploads/8645ef3d91ed72ce8aac84c385245872.jpg\"', 1610675491271, 1, 0, 0, 'null', 0, NULL),
+(355, '4a9df51a31837c454e727a1be29d1fdc', '16', 'f4363244a1158a0f07bcca976f66840b', -2, '*', 'null', '\"storage/uploads/05639fa457db04ccb3fa728e87f42444.jpg\"', 1610675591788, 1, 0, 0, 'null', 0, NULL),
+(356, '0232bafd30dec9f642886d320a64b21c', '16', 'f4363244a1158a0f07bcca976f66840b', -2, '*', 'null', '\"storage/uploads/56c81f60b7455189fc56db4d7b49c240.jpg\"', 1610675626532, 1, 0, 0, 'null', 0, NULL),
+(357, 'a99a5f19e3cc30bdfb105a9d99e3e678', '16', 'f4363244a1158a0f07bcca976f66840b', -2, '*', 'null', '\"storage/uploads/cd07535e1f277bd9893d687fec852143.jpg\"', 1610675740347, 1, 0, 0, 'null', 0, NULL),
+(358, 'ed1ded961b8dce4b10ce12265e6f61fe', '16', 'f4363244a1158a0f07bcca976f66840b', -2, '*', 'null', '\"storage/uploads/b1deb7129f1bdace868d45a4f3a64379.jpg\"', 1610675779569, 1, 0, 0, 'null', 0, NULL),
+(359, 'c8a8e4258f85bffda8039766ddb88c6c', '16', 'f4363244a1158a0f07bcca976f66840b', -2, '*', 'null', '\"storage/uploads/24b6d6f68a3ae3138a6458a391d396bc.jpg\"', 1610675822094, 1, 0, 0, 'null', 0, NULL),
+(360, 'c1c7c2e641b8bdef4cfbc566b68721ac', '16', 'f4363244a1158a0f07bcca976f66840b', -2, '*', 'null', '\"storage/uploads/d22e4d2adb7528ae633ecd222ed75675.jpg\"', 1610675982786, 1, 0, 0, 'null', 0, NULL),
+(361, 'e6397fac6445db60b7318298f43b9bdc', '16', 'f4363244a1158a0f07bcca976f66840b', -2, '*', 'null', '\"storage/uploads/47a482cd1bdd194400da57d9b669b606.jpg\"', 1610676336452, 1, 0, 0, 'null', 0, NULL),
+(362, 'bc89b696188be852f5cea12a7ca64bf0', '17', 'f4363244a1158a0f07bcca976f66840b', -2, '*', 'null', '{\"file_url\": \"storage/uploads/6e1f4d25c84f94ad5be904e118815988.jpg\", \"img_host\": \"http:127.0.0.1\"}', 1610679791301, 1, 0, 0, 'null', 0, NULL),
+(363, '6954b9f748e98b5a79074a3330b92f8e', '17', 'f4363244a1158a0f07bcca976f66840b', -2, '*', 'null', '\"storage/uploads/9629727c7efd1c582143c8c125494158.jpg\"', 1610679798870, 1, 0, 0, 'null', 0, NULL),
+(364, '3637176bdfe93978ddf269e82cb883b1', '17', 'f4363244a1158a0f07bcca976f66840b', -2, '*', 'null', '\"storage/uploads/4f4a203160be762562a8b0da7f1a15a2.jpg\"', 1610679799680, 1, 0, 0, 'null', 0, NULL),
+(365, '9681a003507cdf9d25efb40b62fdb794', '17', 'f4363244a1158a0f07bcca976f66840b', -2, '*', 'null', '\"storage/uploads/1970707683f88beafe20365a57a64c69.jpg\"', 1610679800354, 1, 0, 0, 'null', 0, NULL),
+(366, 'e2f4ff87c5f3c65a7e63f4863a71929a', '17', 'f4363244a1158a0f07bcca976f66840b', -2, '*', 'null', '\"storage/uploads/a2368e4884e4dddf3c445be692a03eb8.jpg\"', 1610679801021, 1, 0, 0, 'null', 0, NULL),
+(367, '24cc43c25d44217d480d64b2d8695d71', '17', 'f4363244a1158a0f07bcca976f66840b', -2, '*', 'null', '\"storage/uploads/c1e0009b1fdf5c91e6364a47e365d4d3.jpg\"', 1610679801681, 1, 0, 0, 'null', 0, NULL),
+(368, '6c1895aaa18f1a7b2baacbd9deb7d151', '17', 'f4363244a1158a0f07bcca976f66840b', -2, '*', 'null', '\"storage/uploads/3d878d87d799568a8c0ed675d2ae05aa.jpg\"', 1610679802232, 1, 0, 0, 'null', 0, NULL),
+(369, '0c14b48036086761c8c580d905884731', '17', 'f4363244a1158a0f07bcca976f66840b', -2, '*', 'null', '\"storage/uploads/e95c0981797f442985075b7faa24f29d.jpg\"', 1610679802888, 1, 0, 0, 'null', 0, NULL),
+(370, '3b34bb8b79c13e2c7107388445b96e87', '17', 'f4363244a1158a0f07bcca976f66840b', -2, '*', 'null', '\"storage/uploads/07daccb58ce04673e885ac6593e56bae.jpg\"', 1610679803544, 1, 0, 0, 'null', 0, NULL),
+(371, '948e3768e9e9e7d985d69395f32005d2', '17', 'f4363244a1158a0f07bcca976f66840b', -2, '*', 'null', '\"storage/uploads/56c0532082e6f05e4996440a056c1109.jpg\"', 1610679804290, 1, 0, 0, 'null', 0, NULL),
+(372, '64b43cfe70dff35d5a0a7672c92939e7', '17', 'f4363244a1158a0f07bcca976f66840b', -2, '*', 'null', '\"storage/uploads/e09380e86cdf52ea4ccb37a59d7d635b.jpg\"', 1610691645178, 1, 0, 0, 'null', 0, NULL);
 
 -- --------------------------------------------------------
 
@@ -317,9 +473,9 @@ CREATE TABLE `conv_info` (
   `conv_id` varchar(32) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL COMMENT '会话ID',
   `conv_type` int(2) NOT NULL COMMENT ' 1 私聊 2 多人会话 3 群聊',
   `client_num` int(6) NOT NULL DEFAULT '0' COMMENT '用户数量',
-  `app_id` varchar(16) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT '商户id',
+  `app_id` varchar(16) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL COMMENT '商户id',
   `conv_extend` json DEFAULT NULL COMMENT '会话扩展',
-  `conv_creater_id` varchar(16) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT '创建者用户ID',
+  `conv_creater_id` varchar(16) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL COMMENT '创建者用户ID',
   `status` int(2) NOT NULL DEFAULT '1' COMMENT '1 正常 2 删除',
   `ctime` bigint(13) NOT NULL COMMENT '创建时间',
   `mtime` bigint(13) DEFAULT NULL COMMENT '修改时间'
@@ -330,7 +486,9 @@ CREATE TABLE `conv_info` (
 --
 
 INSERT INTO `conv_info` (`id`, `conv_id`, `conv_type`, `client_num`, `app_id`, `conv_extend`, `conv_creater_id`, `status`, `ctime`, `mtime`) VALUES
-(74, 'cd7fc5304f56f52488d5246b0ebbdbfb', 1, 0, '666666', '{\"conv_name\": {\"1112\": \"1113\", \"1113\": \"1112\"}, \"conv_avatar\": {\"1112\": \"http://127.0.0.1/img/img2.jpg\", \"1113\": \"http://127.0.0.1/img/timg.jpeg\"}}', '15', 1, 1607776551526, NULL);
+(74, 'cd7fc5304f56f52488d5246b0ebbdbfb', 1, 0, '666666', '{\"conv_name\": {\"1112\": \"1113\", \"1113\": \"1112\"}, \"conv_avatar\": {\"1112\": \"http://127.0.0.1/img/img2.jpg\", \"1113\": \"http://127.0.0.1/img/timg.jpeg\"}}', '15', 1, 1607776551526, NULL),
+(75, 'f4363244a1158a0f07bcca976f66840b', 1, 0, '666666', '{\"conv_name\": {\"147\": \"258\", \"258\": \"147\"}, \"conv_avatar\": {\"147\": \"/img/img2.jpg\", \"258\": \"/img/img2.jpg\"}}', '16', 1, 1610421683270, 1610423593522),
+(76, '8025f0093d3a33f3d6cf23b272e0cae8', 1, 0, '666666', '{\"conv_name\": {\"147\": \"369\", \"369\": \"147\"}, \"conv_avatar\": {\"147\": \"/img/timg.jpeg\", \"369\": \"/img/img2.jpg\"}}', '16', 1, 1610508481469, NULL);
 
 -- --------------------------------------------------------
 
@@ -340,8 +498,8 @@ INSERT INTO `conv_info` (`id`, `conv_id`, `conv_type`, `client_num`, `app_id`, `
 
 CREATE TABLE `conv_relation` (
   `id` int(11) NOT NULL COMMENT '自增主键',
-  `app_id` varchar(32) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `conv_id` varchar(32) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT '回话ID',
+  `app_id` varchar(32) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `conv_id` varchar(32) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL COMMENT '回话ID',
   `user_id` varchar(32) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL COMMENT '用户id',
   `role` int(1) NOT NULL COMMENT '1创建者',
   `conv_type` int(2) DEFAULT NULL COMMENT '会话类型  1 私聊 2 多人会话 3 群聊',
@@ -356,7 +514,11 @@ CREATE TABLE `conv_relation` (
 
 INSERT INTO `conv_relation` (`id`, `app_id`, `conv_id`, `user_id`, `role`, `conv_type`, `status`, `ctime`, `mtime`) VALUES
 (84, '666666', 'cd7fc5304f56f52488d5246b0ebbdbfb', '14', 0, 1, 1, 1607776551572, 1608436274883),
-(85, '666666', 'cd7fc5304f56f52488d5246b0ebbdbfb', '15', 1, 1, 1, 1607776551586, 1608436274883);
+(85, '666666', 'cd7fc5304f56f52488d5246b0ebbdbfb', '15', 1, 1, 1, 1607776551586, 1608436274883),
+(86, '666666', 'f4363244a1158a0f07bcca976f66840b', '16', 1, 1, 1, 1610421683385, 1610691645295),
+(87, '666666', 'f4363244a1158a0f07bcca976f66840b', '17', 0, 1, 1, 1610421683435, 1610691645295),
+(88, '666666', '8025f0093d3a33f3d6cf23b272e0cae8', '16', 1, 1, 1, 1610508481577, 1610510300092),
+(89, '666666', '8025f0093d3a33f3d6cf23b272e0cae8', '18', 0, 1, 1, 1610508481627, 1610510300092);
 
 -- --------------------------------------------------------
 
@@ -366,7 +528,7 @@ INSERT INTO `conv_relation` (`id`, `app_id`, `conv_id`, `user_id`, `role`, `conv
 
 CREATE TABLE `user` (
   `id` int(11) NOT NULL,
-  `app_id` varchar(16) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT '商户id',
+  `app_id` varchar(16) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL COMMENT '商户id',
   `client_id` varchar(16) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL COMMENT '用户id(展示用)',
   `extend` json DEFAULT NULL COMMENT '扩展属性 商户自定义',
   `status` int(1) NOT NULL DEFAULT '0' COMMENT '0 正常 1 封禁',
@@ -391,11 +553,21 @@ INSERT INTO `user` (`id`, `app_id`, `client_id`, `extend`, `status`, `ctime`) VA
 (12, '666666', '11112', '{\"nickname\": \"liliSara\"}', 0, 1599927081906),
 (13, '666666', '1113', '{\"nickname\": \"liliSara\"}', 0, 1601365792586),
 (14, '666666', '1', '{\"nickname\": \"liliSara\"}', 0, 1601368005142),
-(15, '666666', '2', '{\"nickname\": \"nina\"}', 0, 1601368012644);
+(15, '666666', '2', '{\"nickname\": \"nina\"}', 0, 1601368012644),
+(16, '666666', '3', '{\"nickname\": \"147\"}', 0, 1610417963020),
+(17, '666666', '4', '{\"nickname\": \"258\"}', 0, 1610417979117),
+(18, '666666', '5', '{\"nickname\": \"369\"}', 0, 1610505067930),
+(19, '666666', '6', '{\"nickname\": \"123\"}', 0, 1610505084925);
 
 --
 -- 转储表的索引
 --
+
+--
+-- 表的索引 `admin_user`
+--
+ALTER TABLE `admin_user`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- 表的索引 `api_user`
@@ -439,100 +611,40 @@ ALTER TABLE `user`
 --
 
 --
+-- 使用表AUTO_INCREMENT `admin_user`
+--
+ALTER TABLE `admin_user`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
 -- 使用表AUTO_INCREMENT `api_user`
 --
 ALTER TABLE `api_user`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- 使用表AUTO_INCREMENT `conv_detail`
 --
 ALTER TABLE `conv_detail`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=241;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=373;
 
 --
 -- 使用表AUTO_INCREMENT `conv_info`
 --
 ALTER TABLE `conv_info`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=75;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=77;
 
 --
 -- 使用表AUTO_INCREMENT `conv_relation`
 --
 ALTER TABLE `conv_relation`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT COMMENT '自增主键', AUTO_INCREMENT=86;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT COMMENT '自增主键', AUTO_INCREMENT=90;
 
 --
 -- 使用表AUTO_INCREMENT `user`
 --
 ALTER TABLE `user`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
-COMMIT;
-
-/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
-/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
-/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
--- phpMyAdmin SQL Dump
--- version 5.0.4
--- https://www.phpmyadmin.net/
---
--- 主机： mysql:3306
--- 生成日期： 2021-01-26 02:58:09
--- 服务器版本： 8.0.13
--- PHP 版本： 7.4.13
-
-SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-START TRANSACTION;
-SET time_zone = "+00:00";
-
-
-/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
-/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
-/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8mb4 */;
-
---
--- 数据库： `im`
---
-
--- --------------------------------------------------------
-
---
--- 表的结构 `admin_user`
---
-
-CREATE TABLE `admin_user` (
-                            `id` int(11) NOT NULL,
-                            `username` varchar(16) COLLATE utf8mb4_unicode_ci NOT NULL,
-                            `password` varchar(32) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
---
--- 转存表中的数据 `admin_user`
---
-
-INSERT INTO `admin_user` (`id`, `username`, `password`) VALUES
-(1, 'admin', '1');
-
---
--- 转储表的索引
---
-
---
--- 表的索引 `admin_user`
---
-ALTER TABLE `admin_user`
-  ADD PRIMARY KEY (`id`);
-
---
--- 在导出的表使用AUTO_INCREMENT
---
-
---
--- 使用表AUTO_INCREMENT `admin_user`
---
-ALTER TABLE `admin_user`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

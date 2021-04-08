@@ -13,12 +13,15 @@ class LoginController extends Controller
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function login(){
-        // var_dump(public_path());die;
-        return view('admin.login');
-    }
+        // var_dump(session('admin_user'));die;
+        if( session(config('key.s.admin_user')) ){
+            return view('admin.index2');
+        }else{
+            return view('admin.login');
 
+        }
+    }
     public  function login_do(Request $request){
-        //var_dump($request->input('loginName'));
         if( !$request->filled(['loginName','Password']) ){
             return responseError(resCode(4001),4001);
         }
@@ -30,6 +33,8 @@ class LoginController extends Controller
         }
         if( $user_info->password != $Password ) {
             return responseError('密码错误');
+        }else{
+            session([config('key.s.admin_user')=>$userName]);
         }
         return responseSuccess();
     }
@@ -45,5 +50,12 @@ class LoginController extends Controller
 
     public function start(){
         return view('admin.start');
+    }
+
+    /**
+     * 测试用
+     */
+    public function test(){
+        return view('admin.main');
     }
 }

@@ -147,6 +147,7 @@
                 success: function (result) {
                     //console.log(result);
                     ajaxData = result;
+                    document.location.reload();
                 },
                 //请求失败，包含具体的错误信息
                 error: function (e) {

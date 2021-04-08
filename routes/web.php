@@ -83,13 +83,16 @@ Route::prefix('api')->group(function () {
 /**
  * 后台路由
  */
-Route::prefix('admin')->group(function () {
+Route::prefix('admin')->middleware(['ImAdminAuth'])->group(function () {
     Route::get('/login', 'Admin\\LoginController@login');
     Route::post('/login_do', 'Admin\\LoginController@login_do');
     // 后台主页
     Route::get('/index', 'Admin\\LoginController@index');
+    Route::get('/test', 'Admin\\LoginController@test');
     // 后台主页
     Route::get('/start', 'Admin\\LoginController@start');
+    // 用户列表
+    Route::get('/User/userlist', 'Admin\\UserController@userlist');
 });
 
 

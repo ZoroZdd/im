@@ -3,6 +3,7 @@
 namespace App\Http;
 
 use Illuminate\Foundation\Http\Kernel as HttpKernel;
+use Workerman\Events\Select;
 
 class Kernel extends HttpKernel
 {
@@ -28,6 +29,8 @@ class Kernel extends HttpKernel
     /**
      * The application's route middleware groups.
      *
+     *
+     *
      * @var array
      */
     protected $middlewareGroups = [
@@ -41,6 +44,7 @@ class Kernel extends HttpKernel
             \Illuminate\View\Middleware\ShareErrorsFromSession::class,
             // \App\Http\Middleware\VerifyCsrfToken::class,
             \Illuminate\Routing\Middleware\SubstituteBindings::class,
+            \App\Http\Middleware\ImAdminAuth::class
         ],
 
         'api' => [
@@ -73,5 +77,7 @@ class Kernel extends HttpKernel
 
         // IM
         'ImAuth' => \App\Http\Middleware\ImAuth::class,
+        // IM
+        'ImAdminAuth' => \App\Http\Middleware\ImAdminAuth::class,
     ];
 }
